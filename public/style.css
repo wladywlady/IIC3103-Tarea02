@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --primary-color: #5e72e4;
+    --secondary-color: #2dce89;
+    --background-color: #f4f5f7;
+    --surface-color: #ffffff;
+    --text-color: #525f7f;
+    --heading-color: #32325d;
+    --light-gray: #e9ecef;
+    --dark-gray: #8898aa;
+    --success-color: #2dce89;
+    --error-color: #f5365c;
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+#login-view,
+#main-view {
+    width: 100%;
+    max-width: 1200px;
+    background-color: var(--surface-color);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+#connection-status {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    transition: all 0.5s ease;
+    transform: translateY(-100%);
+}
+
+#connection-status.visible {
+    transform: translateY(0);
+}
+
+#connection-status.connected {
+    background-color: var(--success-color);
+}
+
+#connection-status.disconnected {
+    background-color: var(--error-color);
+}
+
+h1,
+h2 {
+    color: var(--heading-color);
+    text-align: center;
+    border-bottom: none;
+    padding-bottom: 15px;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 30px;
+}
+
+#map {
+    height: 450px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--light-gray);
+}
+
+/* --- Formularios y Botones -- */
+form label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: 600;
+}
+
+form input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid var(--light-gray);
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+form input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(94, 114, 228, 0.25);
+}
+
+button,
+.mode-btn {
+    background-image: linear-gradient(to right, #5e72e4, #825ee4);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 10px 5px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+button:hover,
+.mode-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+button:active,
+.mode-btn:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background: var(--light-gray);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- Tabla --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+th,
+td {
+    border: none;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+thead {
+    background-color: var(--surface-color);
+    color: var(--heading-color);
+    font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f9fe;
+}
+
+tbody tr:hover {
+    background-color: #f1f4ff;
+}
+
+.action-cell {
+    text-align: center;
+}
+
+/* --- Chat --- */
+#chat-container {
+    border: 1px solid var(--light-gray);
+    padding: 15px;
+    height: 300px;
+    overflow-y: scroll;
+    background-color: var(--surface-color);
+    border-radius: 8px;
+}
+
+#chat-container p {
+    margin: 0 0 10px 0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    word-wrap: break-word;
+}
+
+/* --- Loaders --- */
+.loader,
+.loader-small {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+.loader {
+    width: 20px;
+    height: 20px;
+}
+
+.loader-small {
+    width: 14px;
+    height: 14px;
+    border-width: 2px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Modal --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: var(--surface-color);
+    margin: 10% auto;
+    padding: 25px;
+    border: none;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.2), 0 5px 15px rgba(0, 0, 0, 0.17);
+    animation: fadeIn 0.3s;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--error-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#decrypt-status {
+    margin-top: 20px;
+    font-family: monospace;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border: 1px solid #333;
+    padding: 15px;
+    height: 250px;
+    overflow-y: auto;
+    word-wrap: break-word;
+    border-radius: 6px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    #login-view,
+    #main-view {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    button,
+    .mode-btn {
+        width: calc(100% - 10px);
+        margin: 5px;
+    }
+
+    #map {
+        height: 300px;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+    }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 2 - Monitoreo de Submarinos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="login-view">
+        <h1>Iniciar Sesión</h1>
+        <form id="login-form">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="student-number">Número de Alumno:</label>
+            <input type="text" id="student-number" name="student-number" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
+
+    <div id="main-view" style="display: none;">
+        <div id="connection-status"></div>
+        <h1>Monitoreo de Submarinos</h1>
+        <div class="controls"></div>
+        <div id="map"></div>
+
+        <h2>Submarinos Detectados</h2>
+        <table id="submarines-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="submarines-table-body"></tbody>
+        </table>
+
+        <h2>Comunicaciones Interceptadas</h2>
+        <div id="chat-container"></div>
+    </div>
+
+    <div id="decrypt-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-title">Desencriptando Submarino...</h2>
+            <div id="decrypt-status"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
